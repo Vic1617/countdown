@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Simple Website with Countdown Timer</title>
+<style>
+  #title-text {
+    color: rgb(183, 3, 3); /* Change the color of the text */
+  }
+  #text1 p {
+    margin-top: -13px; /* Adjust the margin-top */
+  }
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: space-between;
+    background-color: #c5c2c2;
+  }
+  .container {
+    text-align: left;
+    padding: 20px;
+    width: 70%;
+  }
+  #image {
+    max-width: calc(100% - 0px); /* Adjusted width */
+    height: 100%;
+    width: 100%;
+    margin-top: 60px; /* Added margin top */
+    margin-bottom: 0px; /* Added margin bottom */
+    margin-left: 30px; /* Added margin left */
+    border-radius: 7px; /* Rounded corners */
+  }
+  #text-container {
+    float: right;
+    width: 70%;
+    padding-top: 100px; /* Adjusted padding */
+    padding-left: 50px;
+  }
+  .countdown-box {
+    display: inline-block;
+    width: 80px;
+    height: 80px;
+    background-color: #800202;
+    color: white;
+    text-align: center;
+    font-size: 10px;
+    line-height: 1.6;
+    margin-right: 10px;
+    position: relative;
+    border-radius: 7px; /* Rounded corners */
+  }
+  .label {
+    position: absolute;
+    bottom: 5px;
+    width: 100%;
+    font-size: 14px;
+    color: #ddd;
+  }
+  .countdown-value {
+    font-size: 40px;
+    margin-bottom: 10px;
+    text-align: center;
+    color: white;
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <img id="image" src="C:\Users\golda\OneDrive\Desktop\downloadd.jpg" alt="Image">
+</div>
+<div id="text-container" class="container">
+  <div id="text1">
+    <h1><span id="title-text"><strong>NEW LAPTOP GIVEAWAY</strong></span></h1>
+    <p><strong> Give away ends on Sunday, 11th march 2024 At 11:40pm</strong></p>
+  </div>
+  <div id="text2">
+    <br>
+    <p>Welcome to our laptop giveaway! We're excited to give back to our amazing community and offer you the chance to win a brand new laptop. As we celebrate our 20k followers on instagram, stand a chance to win a  HP Pavilion 15.6" Laptop worth over 650$!. To enter simply follow us on instagram at @amieconventions, tag five friends in the comments and fill out our entry form on our site and <strong>YOU</strong> might just be our lucky winner!. HURRY NOW!</p>
+    <div id="timer">
+      <div class="countdown-box">
+        <div id="days-value" class="countdown-value">00</div>
+        <div class="label">Days</div>
+      </div>
+      <div class="countdown-box">
+        <div id="hours-value" class="countdown-value">00</div>
+        <div class="label">Hours</div>
+      </div>
+      <div class="countdown-box">
+        <div id="minutes-value" class="countdown-value">00</div>
+        <div class="label">Minutes</div>
+      </div>
+      <div class="countdown-box">
+        <div id="seconds-value" class="countdown-value">00</div>
+        <div class="label">Seconds</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Set the deadline for the countdown (11th March 2024, 11:40 PM)
+  const deadline = new Date('March 11, 2024 23:40:00').getTime();
+
+  // Update the countdown every second
+  const timer = setInterval(function() {
+    const now = new Date().getTime();
+    const distance = deadline - now;
+
+    // Calculate remaining time
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    // Display the countdown
+    document.getElementById('days-value').innerText = ('0' + days).slice(-2);
+    document.getElementById('hours-value').innerText = ('0' + hours).slice(-2);
+    document.getElementById('minutes-value').innerText = ('0' + minutes).slice(-2);
+    document.getElementById('seconds-value').innerText = ('0' + seconds).slice(-2);
+
+    // If the countdown is over, display a message
+    if (distance < 0) {
+      clearInterval(timer);
+      document.getElementById('timer').innerHTML = 'EXPIRED';
+    }
+  }, 1000);
+</script>
+
+</body>
+</html>
